@@ -1,30 +1,28 @@
 import React from "react";
+import './Demo.scss'
 
 class ChildComponents extends React.Component {
   state = {
     showJobs: false,
   };
 
-  handShowHide = () => {
+  handleShowHideEvent = () => {
     this.setState({
-      showJobs: !this.state.showJobs,
-    });
-  };
-
-  handleOnclickDelete = (job) => {
-    console.log(">>>handleOnclickDelete: ", job)
-    this.props.deleteJob(job)
+      showJobs: !this.state.showJobs
+    })
   }
 
+  handleOnclickDelete = (job) => {
+    this.props.deleteJob(job);
+  }
   render() {
-    let { arrJobs } = this.props;
     let { showJobs } = this.state;
-
+    let { arrJobs } = this.props;
     return (
       <>
         {showJobs ? (
           <div>
-            <button onClick={() => this.handShowHide()}>Show</button>
+            <button className="btn-show" onClick={() => this.handleShowHideEvent()}>Show</button>
           </div>
         ) : (
           <>
@@ -32,13 +30,14 @@ class ChildComponents extends React.Component {
               {arrJobs.map((job) => {
                 return (
                   <div key={job.id}>
-                    {job.title} - {job.salary} <></> <span onClick={() => this.handleOnclickDelete(job)}>X</span>
+                    {job.title} - {job.salary}$ <></>
+                    <span onClick={() => this.handleOnclickDelete(job)}>X</span>
                   </div>
                 );
               })}
             </div>
             <div>
-              <button onClick={() => this.handShowHide()}>Hide</button>
+              <button onClick={() => this.handleShowHideEvent()}>Hide</button>
             </div>
           </>
         )}
@@ -46,6 +45,7 @@ class ChildComponents extends React.Component {
     );
   }
 }
+
 // const ChildComponents = (props) => {
 //   console.log(">>> Check props", props)
 //   let {arrJobs} = props;

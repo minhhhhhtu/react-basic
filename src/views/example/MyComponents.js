@@ -4,38 +4,46 @@ import AddComponent from "./AddComponent";
 class MyComponents extends React.Component {
   state = {
     arrJobs: [
-      { id: "abcJob1", title: "Front-end Developer", salary: "1000$" },
-      { id: "abcJob2", title: "Back-end Developer", salary: "2000$" },
-      { id: "abcJob3", title: "Full Stack Developer", salary: "3000$" },
+      { id: "abcJob1", title: "Front-end Developer", salary: "1000" },
+      { id: "abcJob2", title: "Back-end Developer", salary: "2000" },
+      { id: "abcJob3", title: "Full Stack Developer", salary: "3000" },
     ],
   };
 
   addNewJob = (job) => {
-    console.log("Check data from parent: ", job);
-    let currentJob = this.state.arrJobs; 
-    currentJob.push(job);
+    let currentJobs = this.state.arrJobs; 
+    currentJobs.push(job);
     this.setState({
-      // arrJobs: [...this.state.arrJobs, job]
-      arrJobs: currentJob
+      arrJob: currentJobs
     })
   }
 
   deleteJob = (job) => {
-    let currentJob = this.state.arrJobs; 
-    currentJob = currentJob.filter( item => item.id !== job.id)
+    let currentJobs = this.state.arrJobs; 
+    currentJobs = currentJobs.filter(item => item.id !== job.id);
     this.setState({
-      arrJobs: currentJob
+      arrJobs: currentJobs
     })
   }
+
+  // componentDidUpdate(prevState, prevProps) {
+  //   console.log("Previous state: ", prevState, "current: ", this.state, "props: ", prevProps)
+  // }
+
+  // componentDidMount() {
+  //   console.log(">>>> componentDidMount");
+  // }
 
   render() {
     return (
       <>
-        <AddComponent addNewJob={this.addNewJob} />
-        <ChildComponents arrJobs={this.state.arrJobs} deleteJob={this.deleteJob}/>
+        <AddComponent addNewJob={this.addNewJob}/>
+        <ChildComponents arrJobs={this.state.arrJobs}  deleteJob={this.deleteJob}/>
       </>
     );
   }
 }
 
 export default MyComponents;
+
+

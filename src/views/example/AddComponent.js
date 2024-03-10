@@ -20,7 +20,6 @@ class AddComponent extends React.Component {
 
   handleOnSubmit = (event) => {
     event.preventDefault();
-    console.log(">>> Check data input: ", this.state);
     this.props.addNewJob({
       id: Math.floor(Math.random() * 1000),
       title: this.state.title,
