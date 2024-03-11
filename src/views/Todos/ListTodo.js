@@ -2,7 +2,7 @@ import React from "react";
 import "./ListTodo.scss";
 import AddTodo from "./AddTodo";
 import TodoComponent from "./TodoComponent";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 class ListTodo extends React.Component {
   state = {
@@ -15,31 +15,31 @@ class ListTodo extends React.Component {
 
   addNewTodo = (todo) => {
     this.setState({
-        listTodo: [...this.state.listTodo, todo]
-    })
+      listTodo: [...this.state.listTodo, todo],
+    });
 
-    toast("Wow, Successfully added")
+    toast("Wow, Successfully added");
   };
 
   deleteTodo = (todo) => {
-    let currentFeature = this.state.listTodo.filter(item => item.id !== todo.id);
+    let currentFeature = this.state.listTodo.filter(
+      (item) => item.id !== todo.id
+    );
     this.setState({
-      listTodo: currentFeature
-    })
+      listTodo: currentFeature,
+    });
 
-    toast("Wow, Successfully deleted")
-  }
-
-
-
+    toast("Wow, Successfully deleted");
+  };
 
   render() {
     return (
       <div className="listTodo-container">
         <AddTodo addNewTodo={this.addNewTodo} />
         <TodoComponent
-            listTodo = {this.state.listTodo}
-            deleteTodo = {this.deleteTodo}/>
+          listTodo={this.state.listTodo}
+          deleteTodo={this.deleteTodo}
+        />
       </div>
     );
   }
