@@ -14,10 +14,12 @@ class ListTodo extends React.Component {
   };
 
   addNewTodo = (todo) => {
+    let currentState = this.state.listTodo; 
+    currentState.push(todo);
     this.setState({
-      listTodo: [...this.state.listTodo, todo],
+      listTodo: currentState,
+      title: ""
     });
-
     toast("Wow, Successfully added");
   };
 
@@ -34,13 +36,16 @@ class ListTodo extends React.Component {
 
   render() {
     return (
-      <div className="listTodo-container">
-        <AddTodo addNewTodo={this.addNewTodo} />
-        <TodoComponent
-          listTodo={this.state.listTodo}
-          deleteTodo={this.deleteTodo}
-        />
-      </div>
+      <>
+        <p>Todos app helps managing work</p>
+        <div className="listTodo-container">
+          <AddTodo addNewTodo={this.addNewTodo} />
+          <TodoComponent
+            listTodo={this.state.listTodo}
+            deleteTodo={this.deleteTodo}
+          />
+        </div>
+      </>
     );
   }
 }
